@@ -19,4 +19,5 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency "omniauth-openid"
   s.add_runtime_dependency "multi_json"
+  s.add_runtime_dependency "httparty"
 end

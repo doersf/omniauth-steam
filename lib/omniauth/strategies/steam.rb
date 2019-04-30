@@ -1,5 +1,6 @@
 require 'omniauth-openid'
 require 'multi_json'
+require 'httparty'
 
 module OmniAuth
   module Strategies
@@ -42,7 +43,9 @@ module OmniAuth
       private
 
       def raw_info
-        @raw_info ||= options.api_key ? MultiJson.decode(Net::HTTP.get(player_profile_uri)) : {}
+        r = HTTParty.get(player_profile_uri)
+        puts "player_profile_uri code=#{r.code}"
+        @raw_info ||= ((options.api_key and r.code == 200) ? MultiJson.decode(r.body) : {"personaname" => "Unknown", "realname" => "Unknown"})
       end
 
       def player
