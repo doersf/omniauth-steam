@@ -45,7 +45,7 @@ module OmniAuth
       def raw_info
         r = HTTParty.get(player_profile_uri)
         puts "player_profile_uri code=#{r.code}"
-        @raw_info ||= ((options.api_key and r.code == 200) ? MultiJson.decode(r.body) : {"response" => {"players" => [{"personaname" => "Unknown", "realname" => "Unknown"}]}}
+        @raw_info ||= ((options.api_key and r.code == 200) ? MultiJson.decode(r.body) : {"response" => {"players" => [{"personaname" => "Unknown", "realname" => "Unknown"}]}})
       end
 
       def player
